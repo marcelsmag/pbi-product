@@ -1,0 +1,48 @@
+table Param_vendedor
+	lineageTag: 3a85b05f-1235-45e6-9d4d-fd76566e3852
+
+	column Param_vendedor
+		lineageTag: 25fd6510-7eea-47b2-b866-c5ba1cbab3fc
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Param_vendedor Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Param_vendedor Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Param_vendedor Fields'
+		isHidden
+		lineageTag: b9acc30f-6bf1-4ff4-b645-a02d74c611c2
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Param_vendedor Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Param_vendedor Order'
+		isHidden
+		formatString: 0
+		lineageTag: 9918b139-8576-48d1-b4cc-0a7ac9e80434
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Param_vendedor = calculated
+		mode: import
+		source =
+				{
+				    ("id_mask", NAMEOF('CONSOLIDADO'[id_mask]), 0),
+				    ("IDVendedor", NAMEOF('CONSOLIDADO'[IDVendedor]), 1)
+				}
+
+	annotation PBI_Id = 1310dd406032472c8fe021d07a212151
+

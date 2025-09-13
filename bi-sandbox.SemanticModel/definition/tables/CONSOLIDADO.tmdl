@@ -1,0 +1,103 @@
+table CONSOLIDADO
+	lineageTag: 7bef0ab0-20fb-4d84-87ce-aa5c8b91f5fc
+
+	column IDVendedor
+		dataType: int64
+		formatString: 0
+		lineageTag: 678dd72f-aea8-4607-b726-b4932eaad6e8
+		summarizeBy: none
+		sourceColumn: IDVendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column IDPRODUTO
+		dataType: int64
+		formatString: 0
+		lineageTag: b0b7b3d8-339f-46cb-9c79-5905012ab3ea
+		summarizeBy: sum
+		sourceColumn: IDPRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUTO
+		dataType: string
+		lineageTag: 99fa452a-cb9d-4cb5-9e78-938760b60223
+		summarizeBy: none
+		sourceColumn: PRODUTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column UF
+		dataType: string
+		lineageTag: 08c8bac3-509f-4db2-b2be-2cbba0915926
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column CIDADE
+		dataType: string
+		lineageTag: 1b15f21f-5c7e-411c-850e-cfd48f9703d4
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: CIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column REGIÃO
+		dataType: string
+		lineageTag: c4b7b598-2a0a-4834-8be2-cccbee59d28c
+		summarizeBy: none
+		sourceColumn: REGIÃO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column ' PREÇO '
+		dataType: double
+		lineageTag: 2e18760a-8ad3-4627-9210-320fba55ab67
+		summarizeBy: sum
+		sourceColumn: " PREÇO "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QTDE
+		dataType: int64
+		formatString: 0
+		lineageTag: dbed13bc-794e-4cab-91a0-8fbc62f34017
+		summarizeBy: sum
+		sourceColumn: QTDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_mask = CONSOLIDADO[IDVendedor] * 33
+		lineageTag: 94ec4fa9-e504-499b-bb2d-b0eaeb7fd480
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CONSOLIDADO-148c454e-fd64-45d8-8c50-e8101a14cfe4 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("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", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [IDPRODUTO = _t, PRODUTO = _t, UF = _t, CIDADE = _t, REGIÃO = _t, #" PREÇO " = _t, QTDE = _t, IDVendedor = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"IDVendedor", Int64.Type}, {"IDPRODUTO", Int64.Type}, {"PRODUTO", type text}, {"UF", type text}, {"CIDADE", type text}, {"REGIÃO", type text}, {" PREÇO ", type number}, {"QTDE", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

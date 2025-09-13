@@ -1,0 +1,9 @@
+relationship 0aabe214-148c-4219-86b4-4df82ea2d7be
+	fromColumn: CONSOLIDADO.IDVendedor
+	toColumn: dVendedores.IDVendedor
+
+relationship 07529b7d-af0e-74e9-5975-555ca7054830
+	crossFilteringBehavior: bothDirections
+	fromColumn: CONSOLIDADO.UF
+	toColumn: d_bandeiras.Sigla
+

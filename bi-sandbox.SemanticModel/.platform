@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "bi-sandbox"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d00c731a-adef-4fbf-91ad-a88fd7dc9cd3"
+  }
+}

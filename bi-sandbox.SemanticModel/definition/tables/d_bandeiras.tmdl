@@ -1,0 +1,56 @@
+table d_bandeiras
+	lineageTag: 0067c5e8-8f4d-4770-b969-f4926ca2ea52
+
+	column Bandeira
+		dataType: string
+		lineageTag: 576402b1-7023-4fd7-9797-6017bb1ee315
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Bandeira
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 9151b630-aff1-4656-b541-c3d54c208169
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sigla
+		dataType: string
+		lineageTag: a634dfcc-1ba4-4aa6-a8ec-03605edab215
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capital
+		dataType: string
+		lineageTag: 18ab397b-3a39-45d2-a4ee-a4c842d31b4e
+		summarizeBy: none
+		sourceColumn: Capital
+
+		annotation SummarizationSetBy = Automatic
+
+	column Região
+		dataType: string
+		lineageTag: a414aa7a-8223-40e5-91b4-898d5d05b78d
+		summarizeBy: none
+		sourceColumn: Região
+
+		annotation SummarizationSetBy = Automatic
+
+	partition d_bandeiras = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("rVTNctowEH4VD+eA004v7Q0o0DJx4jFMLkwOa3sD6shaj2SHmbxN2lMPnNI38It1VyYkgHPLZS1L3/583660WvU2VVW6b2G43W4H6CrIyWEGpapAuZxSC07pQUZFuC37GZkKTRXWpSbIXfj58tOX8PJrqPgA+5BZHJRm3bvoDXkpnzGbRFEwsmAy4p9rshX27i5WPTnWsCZwsrpiE0GGqnluUTnX8gosoGyeZBG3uP3vcbQCHsm04SIPM1C7U9QINgrkO2SzAP3AhG1HyjGC9TnGEzZTDgEaH6ED+V25yqqKginmaEHL1lQysHTNTvtsY1bNUv/mrd/Elc3OOy7AVCLOZMHmVlXNs/Vei/oo0YxU8ySEZjf7v9/m3egRsOSb5o/EjTxXXgdXdbNzHRwi4DJmlpzz+KUErRWkrQKd4Q8OQc4MaqEdSf1jKEo5ApPje86K2xTMWCwlxUQzUQs1BT/IqkeZsXPy8b4d8bAFN3+L09YyBJpdKorEIzZzEsoxco1dfRO4aWMmni/3QqWt7voAQmugSGs/vLGMQoKZuseueApYXVn8ZLNEi455dgDlQuQYzMGgshI3mXftnggg562qInhLnHevJQFUfuy6Er26tD1KpEcxe1Mw1Li2eMw3IZM3/9qxSm4O0FvUm7PrmxA3sPBIEXBEENzyXYAj3Mc9L45vCfQz5mpZV3loBvCg7v015pNgvD+RDXl3ppqniTv8XJL2c/ZC8yNLon4JtSZfzRbT8uWixbIrP/HZznFbF2jXqvRdkOkaWn7cftUdzVxSxjSVESZL3xnQBbx53+7+Aw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Bandeira = _t, Estado = _t, Sigla = _t, Capital = _t, Região = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Bandeira", type text}, {"Estado", type text}, {"Sigla", type text}, {"Capital", type text}, {"Região", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

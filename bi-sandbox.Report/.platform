@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "bi-sandbox"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b74ecd73-0ae1-4f89-aadc-011357f08986"
+  }
+}

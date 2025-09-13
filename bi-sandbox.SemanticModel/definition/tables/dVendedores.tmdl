@@ -1,0 +1,54 @@
+table dVendedores
+	lineageTag: cc686e81-68b9-4753-8884-ee075520be8f
+
+	column IDVendedor
+		dataType: int64
+		formatString: 0
+		lineageTag: c73603bf-8ef1-4781-acb8-2f27cbe885fe
+		summarizeBy: none
+		sourceColumn: IDVendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: 29ccc622-2a3e-4980-925e-2e773ec12995
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column email
+		dataType: string
+		lineageTag: c3bbddbd-fb0c-4c13-837b-b1288fad1991
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column permissao_coluna
+		dataType: string
+		lineageTag: 3595243f-df06-4c98-b67d-d4b7e6322cee
+		summarizeBy: none
+		sourceColumn: permissao_coluna
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dVendedores-f56772c5-2507-45d6-a423-bf4ca67a7329 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("pZFBTwJBDIX/y57JZldB9KaREDyYGDQeJMTUmS40MC3pFH+/Hbiw8WLWy8xrk773TWe1qtpJ3TRtNaoeOpVIhkXGREzZFIy+5VfjntIBgoEpEkNCNslfVAsnCipZOquDJB+j+Jkg76r1yHOmnnNdvBSzX4+SUAPB/lL/2flp9o4cMYqezcsjJsXctsjgYu7zHJBUesUw9HHdtFfe/MBjQX8G3aERby71YHQ3b+68v0At4Mvt6RgGeuOg5S9fJCNFYZevx4PSeb5f/WvXtyfgDrOV/b5hYNnLhqBXDEpY/wA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [IDVendedor = _t, Nome = _t, Depto = _t, email = _t, permissao_coluna = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"IDVendedor", Int64.Type}, {"Nome", type text}, {"email", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Depto"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+
